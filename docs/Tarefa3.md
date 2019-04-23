@@ -112,4 +112,57 @@ Essa instalação atualiza alguns arquivos e cria novos arquivos e pastas:
 
 A função de cada um desses arquivos será esclarecida ao longo deste tutorial.
 
+## 6. Auditando o projeto no Google Chrome
+
+Suba o servidor do projeto, em modo de produção:
+
+```bash
+ng serve --prod
+```
+
+Aguarde o processo de construção. Ao final, acesse o projeto pelo **Google Chrome** (obrigatoriamente) pelo endereço [http://localhost:4200](http://localhost:4200).
+
+Abra as Ferramentas de Desenvolvimento do Google Chrome teclando `F12`. Vá até a última aba (`Audits`) e clique sobre `Run audits`. Uma ferramenta chamada **Lighthouse** irá verificar se o projeto cumpre os requisitos para ser considerado um PWA (*Progressive Web Application*). Nesse estágio, o projeto irá conseguir bons escores em vários quesitos, mas não pontuará ainda como PWA porque não destá sendo servido de forma segura, por meio do protocolo `https`.
+
+## 7. Publicando o projeto no GitHub Pages
+
+Uma das formas mais simples de conseguir com que o projeto seja servido utilizando o protocolo `https` é publicá-lo no **GitHub Pages**.
+
+Para tanto:
+
+1. Abra o arquivo `.gitignore` na raiz do projeto e apague dele a referência à pasta `/dist`. Isso faz com que essa pasta, até então ignorada nos *commits*, passe a ser enviada ao repositório.
+
+2. Abra o arquivo `src/manifest.json` e altere a linha que inicia com `start_url` como segue:
+
+```javascript
+{
+   ...
+   "start_url": "/ToAki-6not-2019-1/ToAki/",
+   ...
+}
+```
+
+3. Execute:
+
+```bash
+ng build --prod --base-href /ToAki-6not-2019-1/ToAki/
+```
+* **IMPORTANTE**: não esqueça a barra final (`/`)!
+
+Isso irá construir os arquivos do projeto, otimizados para produção, dentro da pasta `/dist`.
+
+4. Comite o código da pasta dist em um *branch* especial do repositório. Esse *branch* (`gh-pages`) será utilizado pelo GitHub para gerar a aplicação dentro das GitHub Pages.
+
+```bash
+git add dist
+git commit -m "Mesagem de commit"
+git subtree push --prefix=dist origin gh-pages
+```
+
+4. O proprietário do repositório *forkado* precisa acessar os `Settings` do repositório no GitHub e, na seção `GitHub Pages` e selecionar `gh-pages branch` na opção `Source`. **Isso só precisa ser feito uma vez**. 
+
+5. Acesse a aplicação em [https://<user_do_repo_forkado>.github.io/ToAki-6not-2019-1/ToAki](https://<user_do_repo_forkado>.github.io/ToAki-6not-2019-1/ToAki). 
+   
+   **Repita, nesta página, o processo de auditoria descrito no item 6. O Lighthouse deve agora reconhecer a aplicação como um PWA.**
+
 > Novas instruções serão acrescentadas no decurso das próximas aulas. Durante a tarefa, todos os colaboradores deverão comitar seu código para o repositório do grupo. No final da tarefa, o dono do repositório fará um `pull request` para o repositório do professor.
