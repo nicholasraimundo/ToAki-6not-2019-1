@@ -205,4 +205,13 @@ export class AppModule { }
 ```
 **PRONTO**! Agora todos os componentes Angular Material já podem ser utilizados no projeto.
 
+## 9. Adicionando elementos de interface
+
+Deverão ser adicionados os seguintes elementos de interface ao projeto:
+
+1. Um [Toolbar](https://material.angular.io/components/toolbar/overview), tendo por fundo a cor primária do tema, contendo a identificação do aplicativo (**Fatec ToAki**) e um botão com o ícone de três linhas horizontais ou três pontos verticais para abrir o menu lateral;
+2. Um [Sidenav](https://material.angular.io/components/sidenav/overview) (menu lateral), contendo os itens de menu do aplicativo. Os itens de menu devem ser deduzidos de acordo com o documento final de requisitos disponível no AVA.
+
+Após implementar esses elementos de interface, **um dos membros do grupo** deverá comitar as mudanças para o repositório do grupo.
+
 > Novas instruções serão acrescentadas no decurso das próximas aulas. Durante a tarefa, todos os colaboradores deverão comitar seu código para o repositório do grupo. No final da tarefa, o dono do repositório fará um `pull request` para o repositório do professor.
